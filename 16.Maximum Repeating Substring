@@ -1,0 +1,31 @@
+class Solution {
+    public int maxRepeating(String sequence, String word) {
+        String find="";
+        while(sequence.contains(find))
+            find += word;
+        return (find.length()-word.length())/word.length();
+    }
+}
+----------------------------------------------------------------------------------------
+ public int maxRepeating(String s, String w) {
+        int n =s.length(), wn = w.length(), m = n/wn;
+        for(int i=m; i>0; i--){
+            if( s.indexOf(w.repeat(i)) >=0){
+                return i;
+            }
+        }
+        return 0;
+    }
+----------------------------------------------------------------------------------------
+  public int maxRepeating(String s, String w) {
+        int m = s.length()/w.length(), i=0;
+        String tmp =w;
+        while(i <=m ){
+            if( s.indexOf(w) < 0){
+                return i;
+            }
+            w+=tmp;
+            i++;
+        }
+        return 0;
+    }
