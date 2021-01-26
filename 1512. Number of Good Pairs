@@ -1,0 +1,21 @@
+class Solution {
+    public int numIdenticalPairs(int[] nums) {
+        int c=0;
+         for(int i=0;i<nums.length-1;i++){
+             for(int j=i+1;j<nums.length;j++){
+             if(nums[i]==nums[j])c++;
+         }
+         }
+   return c; }
+}
+---------------------------------------------------
+optimized:
+class Solution {
+    public int numIdenticalPairs(int[] nums) {
+        int c=0;
+     int []freq=new int[101];//bcoz len of nums 
+        for(int n:nums){
+            c+=freq[n]++;
+        }
+   return c; }
+}
