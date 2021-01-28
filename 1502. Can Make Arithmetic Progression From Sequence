@@ -1,0 +1,38 @@
+class Solution {
+    public boolean canMakeArithmeticProgression(int[] arr) {
+        
+        int n=arr.length;
+        Arrays.sort(arr);
+        int diff=arr[1]-arr[0];
+        for(int i=2;i<n;i++){
+            if(arr[i]-arr[i-1]!=diff)return false;
+        }
+    return true;}
+}
+
+-------------------------
+opt:
+class Solution {
+    public boolean canMakeArithmeticProgression(int[] arr) {
+        int n=arr.length;
+        Set<Integer>set=new HashSet();
+        int max=Integer.MIN_VALUE;
+        int min=Integer.MAX_VALUE;
+        for(int i:arr){
+            min=Math.min(min,i);
+             max=Math.max(max,i);
+            set.add(i);
+        }
+        int d=max-min;
+        if(d%(n-1)!=0)return false;
+        d/=n-1;
+        int i=0;
+        while(i<n){
+            if(!set.contains(min))return false;
+            min+=d;
+            i++;
+        }
+        
+        return true;
+    }
+}
