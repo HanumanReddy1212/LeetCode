@@ -23,3 +23,26 @@ class Solution {
         
     return count;}
 }
+--------------
+class Solution {
+    public int countConsistentStrings(String allowed, String[] words) {
+	// 1 <= letters.size() <= 26
+	Set<Character> letters = new HashSet<>(allowed.length());
+	for (char letter : allowed.toCharArray())
+		letters.add(letter);
+
+	int count = 0;
+	for (String word : words) {
+		boolean consistent = true;
+		for (char letter : word.toCharArray()) {
+			if (!letters.contains(letter)) {
+				consistent = false;
+				break;
+			}
+		}
+		if (consistent)
+			count++;
+	}
+	return count;
+}
+}
