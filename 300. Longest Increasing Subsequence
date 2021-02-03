@@ -1,4 +1,5 @@
 class Solution {
+//dp,o(n2)
     public int lengthOfLIS(int[] nums) {
         int len=nums.length,maxlen=1;
         int dp[]=new int[len];
@@ -12,4 +13,16 @@ class Solution {
         } 
         }
     return len==0?0:maxlen;}
+}
+----------------------------------------
+class Solution {
+//treeset,nlogn
+    public int lengthOfLIS(int[] nums) {
+        TreeSet<Integer>tree=new TreeSet();
+        for(int num:nums){
+            Integer x=tree.ceiling(num);
+            if(x!=null)tree.remove(x);
+            tree.add(num);
+        }
+    return tree.size();}
 }
