@@ -1,0 +1,40 @@
+lass Solution {
+    Integer prev=null;
+    int freq=1;
+    int maxFreq=0;
+    public int[] findMode(TreeNode root) {
+        
+        List<Integer>modes=new ArrayList();
+        traverse(root,modes);
+        int res[]=new int[modes.size()];
+        for(int i=0;i<modes.size();i++){
+            res[i]=modes.get(i);
+        }
+        
+    return res;}
+    void traverse(TreeNode root,List<Integer>modes){
+        if(root==null)return;
+        traverse(root.left,modes);
+        if(prev!=null){
+            if(prev==root.val){
+                freq++;
+                
+            }
+            else{
+                freq=1;
+            }
+            
+        }
+        
+        if(freq>maxFreq){
+            maxFreq=freq;
+            modes.clear();
+                modes.add(root.val);
+        }
+        else if(freq==maxFreq){
+              modes.add(root.val);
+        }
+        prev=root.val;
+          traverse(root.right,modes);
+    }
+}
