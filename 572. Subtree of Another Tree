@@ -1,0 +1,22 @@
+class Solution {
+    public boolean isSubtree(TreeNode s, TreeNode t) {
+        //tc:s*t,sc:min(s,t)
+        if(s==null)return false;
+        else if(isSametree(s,t))return true;
+        else{
+            //if 1st level has no match,move to next level
+            return isSubtree(s.left,t) || isSubtree(s.right,t);//hi
+        }
+    }
+   boolean isSametree(TreeNode s, TreeNode t){
+       if(s==null || t==null)return s==null && t==null;//if either one is null we have make sure both
+       //are null
+       else if(s.val==t.val){
+            return isSametree(s.left,t.left) && isSametree(s.right,t.right);
+       }
+       else{
+           return false;//move to next level(hi)
+       }
+         
+   }
+}
