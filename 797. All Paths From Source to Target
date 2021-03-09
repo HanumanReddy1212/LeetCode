@@ -1,0 +1,44 @@
+class Solution {
+    //DFS
+    public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+        List<List<Integer>> res=new ArrayList();
+        dfs(graph,0,graph.length-1,new ArrayList(),res);
+        return res;
+    }
+    void dfs(int[][] graph,int src,int dest,List<Integer> list,List<List<Integer>> res){
+        if(src==dest)res.add(list);
+        list.add(src);
+        for(Integer vertex:graph[src]){
+            List<Integer> clist=new ArrayList(list);//clone 
+            dfs(graph,vertex,dest,clist,res);
+        }
+    }
+}
+===
+class Solution {
+    //BFS
+    //tc:n*2 * 2^n  (every vertex it may or may not have:2^n)
+    public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+         List<List<Integer>> res=new ArrayList();
+        Queue<List<Integer>> q=new LinkedList();
+        q.add(Arrays.asList(0));
+        int goalnode=graph.length-1;
+        while(!q.isEmpty()){
+            List<Integer> path=q.poll();
+            int lastnode=path.get(path.size()-1);            
+            if(lastnode==goalnode){
+                res.add(new ArrayList<>(path));
+            }
+            else{//n*n
+                int[] neighbours=graph[lastnode];//n
+                for(int neighbour:neighbours){
+                 List<Integer> list=new ArrayList(path);//n
+                list.add(neighbour);
+                    q.add(list);
+                }
+               
+            }
+        }
+        return res;
+    }
+}
