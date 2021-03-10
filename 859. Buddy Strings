@@ -1,0 +1,28 @@
+class Solution {
+    public boolean buddyStrings(String a, String b) {
+        int alen=a.length();
+         int blen=b.length();
+      if(alen!=blen)return false;
+        if(a.equals(b)){
+              Set<Character>uniq_char=new HashSet();
+            for(char c:a.toCharArray()){
+                 uniq_char.add(c);
+            }
+            if(uniq_char.size()<a.length())return true;
+           else return false;
+           
+        }
+        List<Integer>diff=new ArrayList();
+        for(int i=0;i<a.length();i++){
+            if(a.charAt(i)!=b.charAt(i)){
+                diff.add(i);
+            }
+        }
+        if(diff.size()==2 && a.charAt(diff.get(0))== b.charAt(diff.get(1)) &&    
+          b.charAt(diff.get(0))== a.charAt(diff.get(1)) 
+          ){
+            return true;
+        }
+       
+   else{ return false;}}
+}
